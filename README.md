@@ -1,3 +1,5 @@
+Module to normalize data.
+
 ## Install
 
 ```julia
