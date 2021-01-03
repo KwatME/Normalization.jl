@@ -1,11 +1,9 @@
 using Statistics
 using StatsBase
 
-Float_ = Vector{Float64}
+function normalize(v::Vector{<:Real}, method::String)::Vector{Float64}
 
-function normalize(v::Vector{<:Real}, method::String)::Float_
-
-    v_float = Float_(v)
+    v_float = Vector{Float64}(v)
 
     is_good_ = .!isnan.(v_float)
 
