@@ -1,5 +1,5 @@
 module Normalize
 
-include("normalize_.jl")
+include("_normalize.jl")
 
 end
