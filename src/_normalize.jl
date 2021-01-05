@@ -27,7 +27,7 @@ function normalize(f_::Vector{Float64}, method::String)::Vector{Float64}
 
     elseif method == "sum"
 
-        if any(good_ .< 0)
+        if any(good_ .< 0.0)
 
             error("method=sum can not normalize a vector containing any negative number.")
 
