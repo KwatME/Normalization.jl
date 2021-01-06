@@ -2,6 +2,10 @@ Module for normalizing numerical data.
 
 ## Install
 
+```sh
+julia
+```
+
 ```julia
 using Pkg: add
 
