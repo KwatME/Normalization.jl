@@ -9,7 +9,7 @@ julia
 ```julia
 using Pkg: add
 
-add(url="https://github.com/KwatME/Normalize.jl")
+add(url="https://github.com/KwatME/Normalization.jl")
 ```
 
 ## Use
