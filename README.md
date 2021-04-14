@@ -1,4 +1,4 @@
-Module for normalizing numerical data.
+For normalizing numerical data.
 
 ## Install
 
