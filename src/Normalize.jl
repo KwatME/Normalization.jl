@@ -1,104 +1,71 @@
 using Statistics
 
-
 using StatsBase
 
+function _normalize(f_::Vector{Float64}, m::String)::Vector{Float64}
 
-function _normalize(n_::Vector{Float64}, method::String)::Vector{Float64}
+    if m == "-0-"
 
+        n_ = (f_ .- mean(f_)) / std(f_)
 
-    if method == "-0-"
+    elseif m == "0-1"
 
+        m = minimum(f_)
 
-        normalized_ = (n_ .- mean(n_)) / std(n_)
+        n_ = (f_ .- m) / (maximum(f_) - m)
 
+    elseif m == "sum"
 
-    elseif method == "0-1"
-
-
-        m = minimum(n_)
-
-
-        normalized_ = (n_ .- m) / (maximum(n_) - m)
-
-
-    elseif method == "sum"
-
-
-        if any(n_ .< 0.0)
-
+        if any(f_ .< 0.0)
 
             error(
-                "method=sum can not normalize a vector containing any negative number.",
+                "m=sum can not normalize a vector containing any negative number.",
             )
-
 
         end
 
+        n_ = f_ / sum(f_)
 
-        normalized_ = n_ / sum(n_)
+    elseif m == "1234"
 
+        n_ = ordinalrank(f_)
 
-    elseif method == "1234"
+    elseif m == "1224"
 
+        n_ = competerank(f_)
 
-        normalized_ = ordinalrank(n_)
+    elseif m == "1223"
 
+        n_ = denserank(f_)
 
-    elseif method == "1224"
+    elseif m == "1 2.5 2.5 4"
 
-
-        normalized_ = competerank(n_)
-
-
-    elseif method == "1223"
-
-
-        normalized_ = denserank(n_)
-
-
-    elseif method == "1 2.5 2.5 4"
-
-
-        normalized_ = tiedrank(n_)
-
+        n_ = tiedrank(f_)
 
     else
 
-
-        error("method is not -0-, 0-1, sum, 1234, 1224, 1223, or 1 2.5 2.5 4.")
-
+        error("m is not -0-, 0-1, sum, 1234, 1224, 1223, or 1 2.5 2.5 4.")
 
     end
 
-
-    return normalized_
+    return n_
 
 end
 
+function normalize(f_::Vector{Float64}, m::String)::Vector{Float64}
 
-function normalize(n_nan_::Vector{Float64}, method::String)::Vector{Float64}
+    f_ = copy(f_)
 
+    is_ = .!isnan.(f_)
 
-    n_nan_ = copy(n_nan_)
+    if any(is_)
 
-
-    is_n_ = .!isnan.(n_nan_)
-
-
-    if any(is_n_)
-
-
-        n_nan_[is_n_] .= _normalize(n_nan_[is_n_], method)
-
+        f_[is_] .= _normalize(f_[is_], m)
 
     end
 
-
-    return n_nan_
-
+    return f_
 
 end
-
 
 export normalize
