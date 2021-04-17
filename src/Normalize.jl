@@ -2,7 +2,10 @@ using Statistics
 
 using StatsBase
 
-function _normalize(f_::Vector{Float64}, m::String)::Vector{Float64}
+function _normalize(
+    f_::Vector{Float64},
+    m::String,
+)::Vector{Float64}
 
     if m == "-0-"
 
@@ -44,7 +47,9 @@ function _normalize(f_::Vector{Float64}, m::String)::Vector{Float64}
 
     else
 
-        error("m is not -0-, 0-1, sum, 1234, 1224, 1223, or 1 2.5 2.5 4.")
+        error(
+            "m is not -0-, 0-1, sum, 1234, 1224, 1223, or 1 2.5 2.5 4.",
+        )
 
     end
 
@@ -52,7 +57,10 @@ function _normalize(f_::Vector{Float64}, m::String)::Vector{Float64}
 
 end
 
-function normalize(f_::Vector{Float64}, m::String)::Vector{Float64}
+function normalize(
+    f_::Vector{Float64},
+    m::String,
+)::Vector{Float64}
 
     f_ = copy(f_)
 
