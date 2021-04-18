@@ -13,20 +13,24 @@ function _normalize(
 
     elseif m == "0-1"
 
+        #
         m = minimum(f_)
 
+        #
         n_ = (f_ .- m) / (maximum(f_) - m)
 
     elseif m == "sum"
 
+        #
         if any(f_ .< 0.0)
 
             error(
-                "m=sum can not normalize a vector containing any negative number.",
+                "method sum can not normalize a vector containing any negative number.",
             )
 
         end
 
+        #
         n_ = f_ / sum(f_)
 
     elseif m == "1234"
@@ -48,7 +52,7 @@ function _normalize(
     else
 
         error(
-            "m is not -0-, 0-1, sum, 1234, 1224, 1223, or 1 2.5 2.5 4.",
+            "method is not -0-, 0-1, sum, 1234, 1224, 1223, or 1 2.5 2.5 4.",
         )
 
     end
@@ -62,16 +66,20 @@ function normalize(
     m::String,
 )::Vector{Float64}
 
+    #
     f_ = copy(f_)
 
+    #
     is_ = .!isnan.(f_)
 
+    #
     if any(is_)
 
         f_[is_] .= _normalize(f_[is_], m)
 
     end
 
+    #
     return f_
 
 end

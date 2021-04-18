@@ -1,4 +1,4 @@
-For normalizing numerical data.
+For normalizing.
 
 ## Install
 
