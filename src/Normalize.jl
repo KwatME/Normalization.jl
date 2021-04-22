@@ -10,15 +10,12 @@ function _normalize(f_::Vector{Float64}, m::String)::Vector{Float64}
 
     elseif m == "0-1"
 
-        #
         m = minimum(f_)
 
-        #
         n_ = (f_ .- m) / (maximum(f_) - m)
 
     elseif m == "sum"
 
-        #
         if any(f_ .< 0.0)
 
             error(
@@ -27,7 +24,6 @@ function _normalize(f_::Vector{Float64}, m::String)::Vector{Float64}
 
         end
 
-        #
         n_ = f_ / sum(f_)
 
     elseif m == "1234"
@@ -58,20 +54,16 @@ end
 
 function normalize(f_::Vector{Float64}, m::String)::Vector{Float64}
 
-    #
     f_ = copy(f_)
 
-    #
     is_ = .!isnan.(f_)
 
-    #
     if any(is_)
 
         f_[is_] .= _normalize(f_[is_], m)
 
     end
 
-    #
     return f_
 
 end
