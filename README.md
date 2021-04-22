@@ -1,5 +1,3 @@
-For normalizing.
-
 ## Install
 
 ```sh
@@ -9,7 +7,7 @@ julia
 ```julia
 using Pkg: add
 
-add(url="https://github.com/KwatME/Normalization.jl")
+add(; url="https://github.com/KwatME/Normalization.jl")
 ```
 
 ## Use
