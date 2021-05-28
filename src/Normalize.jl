@@ -18,9 +18,7 @@ function _normalize(f_::Vector{Float64}, m::String)::Vector{Float64}
 
         if any(f_ .< 0.0)
 
-            error(
-                "method sum can not normalize a vector containing any negative number.",
-            )
+            error("method sum can not normalize a vector containing any negative number.")
 
         end
 
